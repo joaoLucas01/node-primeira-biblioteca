@@ -1,35 +1,21 @@
- const fs = require('fs');
- 
- const caminhoArquivo = process.argv;
- const link = caminhoArquivo[2];
 
- fs.readFile(link, 'utf-8', (erro, texto) => {
-    //verificaPalavrasDuplicadas(texto);
-    quebraEmParagrafos(texto);
- })
-
- // criar um array com as palavras
- // contar as ocorrencias
- // montar um objeto com o objeto
-
- // {
- //     "web": 5,
- //     "computador": 4 
- //}
-
- function quebraEmParagrafos(texto) {
-    const paragrafos = texto.toLowerCase().split('\n')
-    const contagem = paragrafos.flatMap((paragrafo) => {
-        if (!paragrafo) return [];
-        return verificaPalavrasDuplicadas(paragrafo)
-    })
-    console.log(contagem)
+ export function contaPalavras(texto) {
+   const paragrafos = extraiParagrafos(texto);
+   const contagem = paragrafos.flatMap((paragrafo) => {
+         if (!paragrafo) return [];
+         return verificaPalavrasDuplicadas(paragrafo)
+      })
+      return contagem;
  }
+ 
+ function extraiParagrafos(texto) {
+   return texto.toLowerCase().split('\n')
+ } 
 
  function limpaPalavras(palavra) {
     return palavra.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
  }
-
+ 
  function verificaPalavrasDuplicadas(texto) {
     const listaPalavras = texto.toLowerCase().split(' ');
     const resultado = {};
