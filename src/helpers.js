@@ -6,10 +6,11 @@ function filtraOcorrencias(paragrafo) {
     let textoFinal = '';
     listaPalavras.forEach((paragrafo, indice) => {
       const duplicadas = filtraOcorrencias(paragrafo).join(', ');
+      if(duplicadas.length > 0) {
       textoFinal += `palavras duplicadas no parágrafo ${indice + 1}: ${duplicadas} \n`
+      }
     })
   
     return textoFinal;
   }
-  
   export { montaSaidaArquivo };
